@@ -28,7 +28,9 @@ keydir = os.path.join(os.path.dirname(__file__), 'keys')
 
 class GpgHomeTestCase(unittest.TestCase):
 
-    gpg_conf_contents = ''
+    gpg_conf_contents = 'pinentry-mode loopback'
+    gpg_agent_conf_contents = 'allow-loopback-pinentry'
+
     import_keys = []
 
     def keyfile(self, key):
@@ -39,6 +41,10 @@ class GpgHomeTestCase(unittest.TestCase):
         os.environ['GNUPGHOME'] = self._gpghome
         fp = open(os.path.join(self._gpghome, 'gpg.conf'), 'wb')
         fp.write(self.gpg_conf_contents.encode('UTF-8'))
+        fp.close()
+
+        fp = open(os.path.join(self._gpghome, 'gpg-agent.conf'), 'wb')
+        fp.write(self.gpg_agent_conf_contents.encode('UTF-8'))
         fp.close()
 
         # import requested keys into the keyring
