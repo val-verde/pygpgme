@@ -157,6 +157,7 @@ static const struct pygpgme_constant constants[] = {
 
   /* gpgme_encrypt_flags_t */
   CONST(ENCRYPT_ALWAYS_TRUST),
+  CONST(ENCRYPT_NO_ENCRYPT_TO),
 
   /* gpgme_sigsum_t */
   CONST(SIGSUM_VALID),
